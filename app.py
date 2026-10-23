@@ -95,6 +95,12 @@ PAGE = r"""<!doctype html>
   footer .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:14px; color:var(--muted); }
   footer strong { color:var(--ink); direction:ltr; unicode-bidi:isolate; }
   .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+  .ad { width:100%; max-width:760px; display:flex; flex-direction:column; align-items:center; gap:8px;
+        padding:12px; border:1px dashed var(--line); border-radius:16px; }
+  .ad-label { align-self:flex-start; font-size:12px; font-weight:600; color:var(--muted); letter-spacing:.02em; }
+  .ad-slot { width:100%; min-height:50px; display:flex; justify-content:center; overflow:hidden; }
+  .ad-320 { max-width:320px; }
+  footer .links a { color:var(--muted); text-decoration:underline; }
 </style>
 </head>
 <body>
@@ -156,6 +162,16 @@ PAGE = r"""<!doctype html>
     </div>
   </section>
 
+  <aside class="ad ad-banner" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <div class="ad-slot ad-320">
+      <script>
+        atOptions = { 'key' : '9513acdb0d81fd33d0faf93dd1ac8578', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+      </script>
+      <script src="https://bicea.org/22/9513acdb0d81fd33d0faf93dd1ac8578"></script>
+    </div>
+  </aside>
+
   <section class="steps-sec" id="how">
     <h2>ثلاث خطوات وبس</h2>
     <div class="steps">
@@ -171,11 +187,20 @@ PAGE = r"""<!doctype html>
     <details><summary>وين ينحفظ المقطع في الآيفون؟</summary><p>في تطبيق «الملفات» داخل مجلد التنزيلات، ومنه تقدر تحفظه في الصور.</p></details>
     <details><summary>ليش ما تحمّل بعض المقاطع؟</summary><p>المقاطع الخاصة أو المحذوفة ما يمكن تحميلها. تأكد أن الحساب عام وأن الرابط صحيح.</p></details>
   </section>
+
+  <aside class="ad ad-native" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <div class="ad-slot">
+      <script async="async" data-cfasync="false" src="https://bicea.org/21/baf3f3aa78686273f2f378444852ca5d"></script>
+      <div id="container-baf3f3aa78686273f2f378444852ca5d"></div>
+    </div>
+  </aside>
 </main>
 
 <footer>
   <div class="wrap">
     <span>صُمّم بواسطة <strong>MSHARIDSN</strong></span>
+    <span class="links"><a href="/privacy">سياسة الخصوصية</a> · <a href="/terms">شروط الاستخدام</a></span>
     <span>حمّل فقط مقاطعك أو المقاطع التي لديك إذن بها.</span>
   </div>
 </footer>
@@ -352,9 +377,88 @@ def ytdlp_info(url):
     }
 
 
+LEGAL_PAGE = r"""<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__ — حمّلها</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap">
+<style>
+  body { margin:0; background:#F1F3F6; color:#14172B; font-family:'IBM Plex Sans Arabic',Tahoma,sans-serif; }
+  main { max-width:720px; margin:0 auto; padding:32px 20px 64px; }
+  a { color:#E8462A; }
+  .back { display:inline-block; margin-bottom:24px; font-weight:600; text-decoration:none; }
+  h1 { font-family:'Lalezar','IBM Plex Sans Arabic',sans-serif; font-weight:400; font-size:40px; margin:0 0 8px; }
+  .date { color:#4A5068; font-size:14px; margin:0 0 28px; }
+  h2 { font-size:19px; margin:28px 0 8px; }
+  p, li { font-size:16px; line-height:1.9; color:#2E3350; }
+  ul { padding-inline-start:22px; margin:0; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">→ الرجوع لـ حمّلها</a>
+  <h1>__TITLE__</h1>
+  <p class="date">آخر تحديث: ٢٣ أكتوبر ٢٠٢٦</p>
+  __BODY__
+</main>
+</body>
+</html>"""
+
+PRIVACY_BODY = """
+<p>هذه السياسة توضح ما يحدث لبياناتك عند استخدام موقع «حمّلها».</p>
+<h2>ما نجمعه</h2>
+<ul>
+  <li>لا نطلب تسجيلاً ولا نجمع اسمك أو بريدك أو رقمك.</li>
+  <li>الرابط الذي تلصقه يُستخدم فقط لجلب المقطع، ولا نحتفظ به.</li>
+  <li>المقاطع لا تُخزَّن عندنا؛ تُمرَّر إليك مباشرة وتُحذف أي نسخة مؤقتة فور انتهاء التحميل.</li>
+  <li>خادم الاستضافة يسجّل بيانات تقنية عادية (مثل عنوان IP ونوع المتصفح ووقت الطلب) لأغراض التشغيل والأمان.</li>
+</ul>
+<h2>الإعلانات وملفات تعريف الارتباط</h2>
+<p>يعرض الموقع إعلانات من شركة Adsterra، وقد تستخدم هذه الشركة ملفات تعريف الارتباط (Cookies) وتقنيات مشابهة لعرض الإعلانات وقياس أدائها. تخضع هذه البيانات لسياسة الخصوصية الخاصة بها. تستطيع حذف ملفات تعريف الارتباط أو حظرها من إعدادات متصفحك.</p>
+<h2>خدمات خارجية</h2>
+<p>لجلب معلومات المقطع وملفه يتصل متصفحك أو خادمنا بخدمة خارجية (tikwm.com) وبخوادم تيك توك، ولكلٍّ منها سياساته الخاصة.</p>
+<h2>الأطفال</h2>
+<p>الموقع غير موجّه لمن هم دون ١٣ عاماً.</p>
+<h2>التغييرات</h2>
+<p>قد نحدّث هذه السياسة، وسيظهر تاريخ آخر تحديث أعلى الصفحة.</p>
+"""
+
+TERMS_BODY = """
+<p>باستخدامك موقع «حمّلها» فإنك توافق على هذه الشروط.</p>
+<h2>الاستخدام المسموح</h2>
+<ul>
+  <li>الموقع أداة لحفظ مقاطع تيك توك للاستخدام الشخصي.</li>
+  <li>أنت مسؤول عن التأكد من أن لديك الحق في تحميل المقطع واستخدامه، كأن يكون من مقاطعك أو لديك إذن صاحبه.</li>
+  <li>يُمنع استخدام المقاطع المحمّلة بما ينتهك حقوق أصحابها، مثل إعادة نشرها على أنها لك أو استخدامها تجارياً دون إذن.</li>
+</ul>
+<h2>الملكية</h2>
+<p>«حمّلها» غير تابع لتيك توك ولا لشركة ByteDance. حقوق المقاطع محفوظة لأصحابها.</p>
+<h2>إخلاء المسؤولية</h2>
+<p>الموقع مقدَّم «كما هو» دون ضمانات، وقد يتوقف أو يتغير في أي وقت. لا نتحمل مسؤولية أي استخدام للمقاطع المحمّلة.</p>
+<h2>الإعلانات</h2>
+<p>الإعلانات المعروضة مقدّمة من طرف ثالث، ولسنا مسؤولين عن محتوى المواقع التي توصلك إليها.</p>
+"""
+
+
+def legal(title, body):
+    return Response(LEGAL_PAGE.replace("__TITLE__", title).replace("__BODY__", body), mimetype="text/html")
+
+
 @app.get("/")
 def index():
     return Response(PAGE, mimetype="text/html")
+
+
+@app.get("/privacy")
+def privacy():
+    return legal("سياسة الخصوصية", PRIVACY_BODY)
+
+
+@app.get("/terms")
+def terms():
+    return legal("شروط الاستخدام", TERMS_BODY)
 
 
 @app.post("/info")
